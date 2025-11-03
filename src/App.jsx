@@ -1,35 +1,65 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { Icon } from "@iconify/react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import Header from "./components/Header";
+import Column from "./components/Column";
+
+export default function App() {
+  const columns = [
+    {
+      title: "Planning",
+      color: "#ff66a3",
+      tasks: [
+        { title: "Brainstorm ideas", description: "Outline awareness strategies" },
+        { title: "Design posters", description: "Create impactful visuals" },
+        { title: "Community Outreach", description: "Visit chief posts and village awareness" },
+        { title: "Research", description: "Research breast cancer statistics in the target community." },
+        { title: "Design posters", description: "Create impactful visuals" },
+      ],
+    },
+    {
+      title: "In Progress",
+      color: "#ff66a3",
+      tasks: [
+        { title: "Social media posts", description: "Schedule campaign posts" },
+        { title: "Community outreach", description: "Partner with hospitals" },
+        { title: "Design posters", description: "Create impactful visuals" },
+        { title: "Design posters", description: "Create impactful visuals" },
+        { title: "Design posters", description: "Create impactful visuals" },
+      ],
+    },
+    {
+      title: "Completed",
+      color: "#ff66a3",
+      tasks: [
+        { title: "Volunteer training", description: "Completed successfully" },
+        { title: "Fundraiser setup", description: "Event ready for launch" },
+        { title: "Design posters", description: "Create impactful visuals" }
+      ],
+    },
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <Header />
+      <main style={styles.main}>
+        {columns.map((col, i) => (
+          <Column key={i} title={col.title} color={col.color} tasks={col.tasks} />
+        ))}
+      </main>
+    </div>
+  );
 }
 
-export default App
+const styles = {
+  main: {
+    display: "flex",
+    justifyContent: "center", // Centers the columns together
+    gap: "24px", // less spacing between columns
+    padding: "20px 40px",
+    backgroundImage: "url('/background.jpg')",
+    backgroundColor: "#ffe6f0",
+    minHeight: "100vh",
+    flexWrap: "wrap", // responsive wrapping for smaller screens
+  },
+};
